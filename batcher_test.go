@@ -2,7 +2,7 @@ package go_batcher
 
 import (
 	"testing"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestBatchMgr(t *testing.T) {
@@ -10,4 +10,6 @@ func TestBatchMgr(t *testing.T) {
 	batcher := NewBatcher()
 	batcher.AddBatcher(batch)
 	assert.Equal(t, batcher.GetBatcher("TEST"), batch)
+	batcher.DelBatcher("TEST")
+	assert.Nil(t, batcher.GetBatcher("TEST"))
 }

@@ -6,7 +6,7 @@ type cbFunc func(batch []interface{})
 
 type Batcher struct {
 	batches map[string]*Batch
-	mutex    sync.RWMutex
+	mutex   sync.RWMutex
 }
 
 func NewBatcher() *Batcher {
@@ -25,4 +25,10 @@ func (bm *Batcher) GetBatcher(name string) *Batch {
 	bm.mutex.RLock()
 	defer bm.mutex.RUnlock()
 	return bm.batches[name]
+}
+
+func (bm *Batcher) DelBatcher(name string) {
+	bm.mutex.RLock()
+	delete(bm.batches, name)
+	bm.mutex.RUnlock()
 }
