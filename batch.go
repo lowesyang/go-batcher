@@ -75,7 +75,7 @@ func (bc *Batch) run() {
 			return
 		case item := <-bc.input:
 			batch = append(batch, item)
-			if len(batch) == bc.maxCapacity {
+			if len(batch) >= bc.maxCapacity {
 				// Callback with batch
 				bc.callback(batch)
 				// Init batch array
