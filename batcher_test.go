@@ -8,8 +8,8 @@ import (
 func TestBatchMgr(t *testing.T) {
 	batch := NewBatch("TEST", 10, 0, nil)
 	batcher := NewBatcher()
-	batcher.AddBatcher(batch)
-	assert.Equal(t, batcher.GetBatcher("TEST"), batch)
-	batcher.DelBatcher("TEST")
-	assert.Nil(t, batcher.GetBatcher("TEST"))
+	batcher.AddBatch(batch)
+	assert.Equal(t, batcher.GetBatch("TEST"), batch)
+	batcher.DelBatch("TEST")
+	assert.Nil(t, batcher.GetBatch("TEST"))
 }
